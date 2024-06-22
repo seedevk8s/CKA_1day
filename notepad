@@ -1,0 +1,26 @@
+ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/server.key --cert=/data/etcd-snapshot.db --key=/etc/kubernetes/pki/etcd/server.key isnapshot save /data/etcd-snapshot.db
+
+/etc/kubernetes/pki/etcd/ca.crt
+/etc/kubernetes/pki/etcd/server.crt
+/etc/kubernetes/pki/etcd/server.key
+/data/etcd-snapshot.db
+
+
+
+ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot save /data/etcd-snapshot.db     <-----백업
+
+ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key snapshot restore /data/etcd-snapshot-previous.dbi    <-----복원
+
+
+
+ETCDCTL_API=3 etcdctl --endpoints=https://127.0.0.1:2379 \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt --cert=/etc/kubernetes/pki/etcd/server.crt --key=/etc/kubernetes/pki/etcd/server.key \
+  snapshot save /data/etcd-snapshot.db
+
+
+
+
+
+패턴1
+etcdutl --data-dir=/var/lib/etcd-new  snapshot restore /data/etcd-snapshot-previous.db           <-----백업 
+
