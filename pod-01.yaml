@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-01
+  namespace: cka-exam
+spec:
+  containers:
+  - image: busybox
+    name: pod-01
+    env:
+    - name: CERT
+      value: "CKA-cert"
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do echo $(CERT); sleep 10;done"]    
